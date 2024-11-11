@@ -2,7 +2,7 @@ name: Build and Release Executable
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
         pyinstaller --onefile --windowed --distpath ./dist --workpath ./build SteamAgeCheckBypass.py
 
     - name: Upload executable as a release asset
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2.1.0
       with:
         files: ./dist/SteamAgeCheckBypass
       env:
