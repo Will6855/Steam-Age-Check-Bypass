@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -29,6 +29,6 @@ jobs:
     - name: Upload executable as a release asset
       uses: softprops/action-gh-release@v2.1.0
       with:
-        files: ./dist/SteamAgeCheckBypass
+        files: ./dist/SteamAgeCheckBypass.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
