@@ -4,10 +4,10 @@ A Python script to bypass the Steam age check.
 
 ## Table of Contents
 
-- [Steam Age Check Bypass](#steam-age-check-bypass)
-  - [Table of Contents](#table-of-contents)
-  - [About](#about)
-  - [Installation](#installation)
+- [About](#about)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Releases](#releases)
 
 ## About
 
@@ -29,3 +29,8 @@ To use the script, simply run the following command in your terminal:
 ```bash
 python SteamAgeCheckBypass.py
 ```
+
+## Releases
+You can find pre-compiled executables for Windows in the [Releases](https://github.com/Will6855/SteamAgeCheckBypass/releases) section. Simply download the latest .exe file and run it to use the script without needing to install Python or any dependencies.
+
+Note: Make sure to only download executables from trusted sources, such as the official GitHub releases page.
