@@ -1,4 +1,6 @@
 # Steam Age Check Bypass
+![GitHub Release](https://img.shields.io/github/v/release/Will6855/Steam-Age-Check-Bypass)
+![Github Releases](https://img.shields.io/github/downloads/Will6855/Steam-Age-Check-Bypass/latest/total.svg)
 
 A Python script to bypass the Steam age check.
 
