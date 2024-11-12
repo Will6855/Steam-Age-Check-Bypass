@@ -26,32 +26,45 @@ def close_steam():
                 continue  # If there's an issue, just skip and continue
             break  # Stop once Steam is found and terminated
 
-def insert_cookie():
-    """Insert the 'wants_mature_content' cookie into Steam's cookies SQLite database."""
+def insert_cookies():
+    """Insert cookies into the Steam's cookies SQLite database."""
     cookies_db_path = get_steam_cookie_path()
-    
-    query = """
-    INSERT OR REPLACE INTO "main"."cookies" (
-        "creation_utc", "host_key", "top_frame_site_key", "name", "value", 
-        "encrypted_value", "path", "expires_utc", "is_secure", "is_httponly", 
-        "last_access_utc", "has_expires", "is_persistent", "priority", "samesite", 
-        "source_scheme", "source_port", "last_update_utc", "source_type", 
-        "has_cross_site_ancestor"
-    ) VALUES (
-        13369518193533818, 'store.steampowered.com', '', 'wants_mature_content', '', 
-        X'763130e83b5a9b1fad604ba8910b17fe98952393ed7a70c240fd544159fd96a2', '/', 
-        20000000000000000, 0, 0, 13369518193533818, 1, 1, 1, -1, 2, 443, 
-        13369518193533818, 0, 1
-    );
-    """
-    
+
+    cookies_data = [
+        (
+            13370000000000000, 'store.steampowered.com', '', 'wants_mature_content', 1,
+            bytes.fromhex(''),
+            '/', 20000000000000000, 0, 0, 13370000000000000, 1, 1, 1, -1, 2, 443, 13370000000000000, 1, 1
+        ),
+        (
+            13370000000000000, 'store.steampowered.com', '', 'lastagecheckage', '1-January-1995',
+            bytes.fromhex(''),
+            '/', 20000000000000000, 0, 0, 13370000000000000, 1, 1, 1, -1, 2, 443, 13370000000000000, 1, 1
+        ),
+        (
+            13370000000000000, 'store.steampowered.com', '', 'birthtime', 788914801,
+            bytes.fromhex(''),
+            '/', 20000000000000000, 0, 0, 13370000000000000, 1, 1, 1, -1, 2, 443, 13370000000000000, 1, 1
+        )
+    ]
+
     try:
-        # Connect to the SQLite database and execute the query
+        # Connect to the SQLite database and execute the queries
         conn = sqlite3.connect(cookies_db_path)
-        conn.execute(query)
+        cursor = conn.cursor()
+        for cookie in cookies_data:
+            cursor.execute("""
+                INSERT OR REPLACE INTO "main"."cookies" (
+                    "creation_utc", "host_key", "top_frame_site_key", "name", "value", 
+                    "encrypted_value", "path", "expires_utc", "is_secure", "is_httponly", 
+                    "last_access_utc", "has_expires", "is_persistent", "priority", "samesite", 
+                    "source_scheme", "source_port", "last_update_utc", "source_type", 
+                    "has_cross_site_ancestor"
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            """, cookie)
         conn.commit()
         conn.close()
-        show_message("Success", "Successfully added the 'wants_mature_content' cookie.")
+        show_message("Success", "Successfully added the Age Check Bypass.")
     except sqlite3.Error as e:
         show_message("Error", f"Unable to update the cookies database: {e}", "error")
 
@@ -66,6 +79,6 @@ def show_message(title, message, msg_type="info"):
     root.quit()
 
 if __name__ == "__main__":
-    show_message("Notice", "The script will close Steam if it's running, and then add the 'wants_mature_content' cookie.")
+    show_message("Notice", "The script will close Steam if it's running, and then activate the Age Check Bypass.")
     close_steam()  # Attempt to close Steam before proceeding
-    insert_cookie()
+    insert_cookies()
