@@ -4,13 +4,6 @@
 
 A Python script to bypass the Steam age check.
 
-## Table of Contents
-
-- [About](#about)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Releases](#releases)
-
 ## About
 
 This script is designed to bypass the Steam age check, allowing users to access content that would otherwise be restricted due to their age. Please note that using this script may be against Steam's terms of service.
